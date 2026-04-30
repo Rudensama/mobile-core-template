@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseClasses.HexNodeGroup
   hexNodePrefab: {fileID: 8475191527206230418, guid: fd186c7a460b8354a8bd63db7100864a, type: 3}
+  type: 1

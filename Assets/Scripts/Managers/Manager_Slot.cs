@@ -1,5 +1,4 @@
 ﻿using System;
-using BaseClasses;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -16,6 +15,16 @@ namespace Managers
         private HexNodeGroup[] _hexNodeGroups = new HexNodeGroup[3];
         
         public Vector3 GetSlotPosition(int slotIndex) => _slotPositions[slotIndex];
+
+        private void OnEnable()
+        {
+            GridManager.OnNodePlaced += OnNodePlaced;
+        }
+
+        private void OnDisable()
+        {
+            GridManager.OnNodePlaced -= OnNodePlaced;
+        }
 
         private void Start()
         {
@@ -42,14 +51,13 @@ namespace Managers
             go.transform.position = worldPos;
             
             HexNodeGroup hexNodeGroup = go.GetComponent<HexNodeGroup>();
-            hexNodeGroup.OnNodeGroupPlaced += OnNodeGroupPlaced;
             hexNodeGroup.Initialize(worldPos, slotIndex);
             _hexNodeGroups[slotIndex] = hexNodeGroup;
         }
 
-        private void OnNodeGroupPlaced(int slotIndex)
+        private void OnNodePlaced(int slotIndex)
         {
-            _hexNodeGroups[slotIndex].OnNodeGroupPlaced -= OnNodeGroupPlaced;
+            _hexNodeGroups[slotIndex] = null;
             OnSlotFreed?.Invoke(slotIndex);
             
             for (int i = 0; i < _hexNodeGroups.Length; i++)

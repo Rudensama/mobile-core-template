@@ -6,6 +6,6 @@ namespace Managers
 {
     public class GameManager : Singleton<GameManager>
     {
-        public List<HNGData> hexNodeGroupDatas = new List<HNGData>();
+        public HNGData[] hexNodeGroupDatas =  new HNGData[6];
     }
 }

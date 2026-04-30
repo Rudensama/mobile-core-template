@@ -1,6 +1,9 @@
 using UnityEngine;
 
-public class StateManager : Singleton<StateManager>
+namespace Managers
 {
-    
+    public class StateManager : Singleton<StateManager>
+    {
+        
+    }
 }
